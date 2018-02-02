@@ -81,7 +81,7 @@ public class Auction
     {
         if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
             // The number seems to be reasonable.
-            Lot selectedLot = lots.get(lotNumber - 1);
+            Lot selectedLot = lots.get(lotNumber-1);
             // Include a confidence check to be sure we have the
             // right lot.
             if(selectedLot.getNumber() != lotNumber) {
@@ -101,6 +101,11 @@ public class Auction
         }
     }
 
+    
+    /**
+     * Imprime por pantalla toda la informacion de los lotes, si el lote tiene alguna puja tambien
+     * imprime de cuando es, y la persona que la hizo.
+     */
     public void close()
     {
         for (Lot lote : lots)
@@ -116,6 +121,9 @@ public class Auction
         }
     }
 
+    /**
+     * Devuelve los lotes de la coleccion que no han sido vendidos (guardados en otra coleccion)
+     */
     public ArrayList<Lot> getUnsold()
     {
         ArrayList<Lot> copiaColeccion = (ArrayList<Lot>) lots.clone();
@@ -130,5 +138,32 @@ public class Auction
                 
         }
         return copiaColeccion;
+    }
+    
+    /**
+     * Eliminar el lote con el numero de 
+     * lote especificado.
+     * @param numer El numero del lote que hay que eliminar.
+     * @return El lote con el numero dado o null si
+     * no existe tal lote.
+     */
+    
+    public Lot removeLot(int number)
+    {
+        boolean loteEncontrado = false;
+        int i = 0;
+        Lot loteBorrado = null;
+        while (!loteEncontrado) 
+        {  
+            Lot loteActual = lots.get(i);
+            if(loteActual.getNumber() == number)
+            {
+                lots.remove(loteActual);
+                loteEncontrado = true;
+                loteBorrado = loteActual;
+            }
+            i++;
+        }
+        return loteBorrado;
     }
 }
