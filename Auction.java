@@ -100,4 +100,19 @@ public class Auction
             return null;
         }
     }
+    
+    public void close()
+    {
+        for (Lot lote : lots)
+        {
+            if (lote.getHighestBid()!=null)
+            {
+                System.out.println(lote + " Puja de: " + lote.getHighestBid() + " Pujado por: " + lote.getHighestBid().getBidder()) ;
+            }
+            else
+            {
+                System.out.print(lote);
+            }
+        }
+    }
 }
